@@ -33,6 +33,9 @@ def run():
     inc = 0
       # Cria uma matriz de translação que desloca o centro da imagem para a origem
     trans1 = np.array([[1, 0, -height/2], [0, 1, -width/2], [0, 0, 1]])
+     # Crie um objeto VideoWriter
+    
+    out = cv.VideoWriter('rotating_video.avi', cv.VideoWriter_fourcc(*'XVID'), 30, (width,height))
     while True:
         ret, frame = cap.read()
         if not ret:
@@ -41,7 +44,7 @@ def run():
 
         frame = cv.resize(frame, (width, height), interpolation=cv.INTER_AREA)
         image = np.array(frame).astype(float) / 255
-
+        
           # Define o ângulo de rotação
     
 
@@ -52,19 +55,20 @@ def run():
 
         # Cria uma matriz de translação que desloca o centro de volta para a posição original
         trans2 = np.array([[1, 0, width/2], [0, 1, height/2], [0, 0, 1]])
-
+        cisalhamento = np.array([[1,0,0], [1,1,0], [0,0,1]])
         Xd = criar_indices(0, height, 0, width)
         Xd = np.vstack((Xd, np.ones(Xd.shape[1])))
-        X = np.linalg.inv(trans1)@rot@trans1@Xd
+        X = np.linalg.inv(trans1)@cisalhamento@rot@trans1@Xd
         filtro = (X[0, :] < image.shape[0]-1) & (X[0, :] >= 0) & (X[1, :] < image.shape[1]-1) & (X[1, :] >= 0)
         X = X[:, filtro]
         Xd = Xd[:, filtro]
         Xd = Xd.astype(int)
         X = X.astype(int)
+       
         image_ = np.zeros(image.shape)
         image_[Xd[0, :], Xd[1, :], :] = image[X[0, :], X[1, :], :]
-
-
+        image_ = cv.convertScaleAbs(image_ * 255)  # converte para 8 bits
+        out.write(image_)   
         cv.imshow('Minha Imagem!', image_)
         
         if cv.waitKey(1) == ord('q'):
@@ -83,5 +87,6 @@ def run():
 
     cap.release()
     cv.destroyAllWindows()
+    out.release()
 
 run()
