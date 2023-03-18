@@ -1,6 +1,8 @@
 import numpy as np
 import cv2 as cv
 import itertools
+import keyboard
+import time
 
 
 
@@ -20,7 +22,7 @@ def run():
     idx_j = np.array([e[1] for e in L])
     idx = np.vstack((idx_i, idx_j))
     return idx
-
+   
 def run():
     cap = cv.VideoCapture(0)
     width = 320
@@ -29,6 +31,9 @@ def run():
         print("Não consegui abrir a câmera!")
         exit()
 
+    cisalhamento = np.array([[1,0,0],[0,1,0],[0,0,1]])
+
+    transf_cis = 0
     ang = 5
     inc = 0
       # Cria uma matriz de translação que desloca o centro da imagem para a origem
@@ -55,7 +60,7 @@ def run():
 
         Xd = criar_indices(0, height, 0, width)
         Xd = np.vstack((Xd, np.ones(Xd.shape[1])))
-        X = np.linalg.inv(trans1)@rot@trans1@Xd
+        X = np.linalg.inv(trans1)@cisalhamento@rot@trans1@Xd
         filtro = (X[0, :] < image.shape[0]-1) & (X[0, :] >= 0) & (X[1, :] < image.shape[1]-1) & (X[1, :] >= 0)
         X = X[:, filtro]
         Xd = Xd[:, filtro]
@@ -73,12 +78,23 @@ def run():
         
 
         #altera a velocidade da rotação pelas setas do teclado
-        if cv.waitKey(1) == ord('d'):
+        K = cv.waitKey(1)
+        if K == ord('d'):
             inc += 0.1
-            
-            print(ang)
-        if cv.waitKey(1) == ord('a'):
+        if K == ord('a'):
             inc -= 0.1
+
+        if keyboard.is_pressed('c'):
+            time.sleep(0.1)
+            if transf_cis == 0:
+                cisalhamento = np.array([[1,0,0],[-1,1,0],[0,0,1]])
+                transf_cis = 1
+            elif transf_cis == 1:
+                cisalhamento = np.array([[1,0,0],[1,1,0],[0,0,1]])
+                transf_cis = 2
+            else:
+                cisalhamento = np.array([[1,0,0],[0,1,0],[0,0,1]])
+                transf_cis = 0
         
 
     cap.release()
