@@ -47,10 +47,6 @@ def run():
 
         # Cria uma matriz de rotação
         rot = np.array([[np.cos(ang), -np.sin(ang), 0], [np.sin(ang), np.cos(ang), 0], [0, 0, 1]])
-
-        # Cria uma matriz de translação que desloca o centro de volta para a posição original
-        trans2 = np.array([[1, 0, width/2], [0, 1, height/2], [0, 0, 1]])
-        cisalhamento = np.array([[1,0,0], [1,1,0], [0,0,1]])
         Xd = criar_indices(0, height, 0, width)
         Xd = np.vstack((Xd, np.ones(Xd.shape[1])))
         X = np.linalg.inv(trans1)@cisalhamento@rot@trans1@Xd
