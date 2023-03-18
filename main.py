@@ -13,7 +13,6 @@ pygame.mixer.music.load("trilha.mp3")
 pygame.mixer.music.play(-1)
 
 
-
 # Função para criar índices para a matriz de transformação
 def criar_indices(min_i, max_i, min_j, max_j):
     # Cria uma lista com todas as combinações possíveis de índices
@@ -67,7 +66,6 @@ def run():
         # Converte o frame para uma matriz numpy de ponto flutuante no intervalo [0,1]
         image = np.array(frame).astype(float) / 255
 
-        # Define o ângulo de rotação
         # Cria uma matriz de rotação
         rot = np.array([[np.cos(ang), -np.sin(ang), 0], [np.sin(ang), np.cos(ang), 0], [0, 0, 1]])
        
@@ -76,9 +74,9 @@ def run():
         Xd = np.vstack((Xd, np.ones(Xd.shape[1])))
          # Cria uma matriz de transformação composta por translação, cisalhamento, rotação e translação inversa
         X = np.linalg.inv(trans1)@cisalhamento@rot@trans1@Xd
-        # Cria uma máscara para remover os pontos fora da imagem
+        # Cria um filtro para remover os pontos fora da imagem
         filtro = (X[0, :] < image.shape[0]-1) & (X[0, :] >= 0) & (X[1, :] < image.shape[1]-1) & (X[1, :] >= 0)
-        # Aplica a máscara
+        # Aplica o filtro
         X = X[:, filtro]
         Xd = Xd[:, filtro]
         # Converte os pontos para inteiros
@@ -109,7 +107,7 @@ def run():
          # Altera o tipo de cisalhamento ao pressionar a tecla 'c'
         if keyboard.is_pressed('c'):
             time.sleep(0.1)
-            # Verifica o valor da variável transf_cis
+            # Verifica o valor da variável transf_cis e altera a variável cisalhamento
             if transf_cis == 0:
                 cisalhamento = np.array([[1,0,0],[-1,1,0],[0,0,1]])
                 transf_cis = 1
