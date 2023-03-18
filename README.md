@@ -1,7 +1,7 @@
 # MotionEye
 MotionEye é um programa que busca criar um vídeo interativo para o usuário através de transformações na imagem da câmera ao vivo do usuário.
 
-Para utilizar o programa basta clonar esse repositório em algum local de sua máquina, acessá-lo e executar no terminal o seguinte comando: python .\main.py
+Para utilizar o programa basta clonar esse repositório em algum local de sua máquina, acessá-lo, rodar pip install -r requirements.txt para instalar as bibliotecas necessárias (se estiver rodando em um Linux, é necessário dar permissão de super usuário para instalar a biblioteca keyboard) e executar no terminal o seguinte comando: python .\main.py
 
 Após isso, a sua câmera será aberta e o vídeo começará a ser gravado, e salvo assim que você executar o comando para fechar o programa.
 
@@ -11,4 +11,4 @@ O programa permite algumas funcionalidades para transformar a imagem, sendo elas
 
 - Cisalhar: ao pressionar a tecla C é possível aplicar dois tipos de cisalhamento na imagem, isso acontece porque estamos multiplicando uma variavel 'cisalhamento', que inicia como uma matriz identidade, e é alterada para uma matriz transformação de cisalhamento quando o usuário pressionar a devida tecla pela nossa matriz da imagem.
 
--Alteração de cores: também é possível alterar as cores da imagem através 
+'
