@@ -3,16 +3,22 @@ import cv2 as cv
 import itertools
 import keyboard
 import time
+import pygame
 
+# Inicializa o mixer do Pygame
+pygame.mixer.init()
+# Carrega a música a ser reproduzida
+pygame.mixer.music.load("trilha.mp3")
+# Inicia a reprodução da música em loop infinito
+pygame.mixer.music.play(-1)
 
-
-sentido_horario = True
 def criar_indices(min_i, max_i, min_j, max_j):
     L = list(itertools.product(range(min_i, max_i), range(min_j, max_j)))
     idx_i = np.array([e[0] for e in L])
     idx_j = np.array([e[1] for e in L])
     idx = np.vstack((idx_i, idx_j))
     return idx
+
 def run():
     cap = cv.VideoCapture(0)
     width = 320
