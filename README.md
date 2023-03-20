@@ -22,5 +22,6 @@ Tal funcionalidade foi implementada através de manipulações matriciais, sendo
 - Cisalhar: ao pressionar a tecla **c** é possível aplicar dois tipos de cisalhamento na imagem, isso acontece porque estamos multiplicando uma variavel 'cisalhamento', que inicia como uma matriz identidade, pela nossa matriz da imagem. Por ser uma matriz identidade, nada ocorre, mas quando o usuário pressiona a devida tecla, essa variável 'cisalhamento' é alterada para uma matriz transformação de cisalhamento ´[[1,0,0],[-1,1,0],[0,0,1]]` aplicando um cisalhamento para a esquerda, se pressionada novamente é alterada para `[[1,0,0],[1,1,0],[0,0,1]]´ aplicando um cisalhamento para a direita, e por fim, se pressionada novamente ela torna a ser uma matriz identidade e a imagem não apresenta mais cisalhamento.
 
 
+Feito por: <a href= "https://github.com/fernandovs4"> Fernando Santos e <a href = "https://github.com/eriksoaress"> Erik Soares<a>
 
 
