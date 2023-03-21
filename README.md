@@ -21,6 +21,7 @@ Criou se uma matriz de rotação R:
 
 Uma matriz de translação T:
 <img src= "https://github.com/eriksoaress/MotionEye/blob/main/translacao.jpeg">
+Em T, heigth e width representam, respectivamente, a altura e largura da tela utilizada para a gravação.
 
 Duas matrizes de cisalhamento  C e uma matriz identidade, também representada pela letra C:
 <img src= "https://github.com/eriksoaress/MotionEye/blob/main/cisalhar.jpeg">
