@@ -54,9 +54,12 @@ Por fim, nossa matriz Q, que será usada para mostrar a imagem com as rotações
 
 O programa permite algumas funcionalidades para transformar a imagem, sendo elas:
 
+
 - Rotacionar: inicialmente, a imagem está girando no sentido horário em determinada velocidade, mas é possível alterar a direção e a aceleração através do pressionamento da tecla **d** para aumentar a velocidade em sentido horário, e a tecla **a** em sentido anti-horário.Quando clicamos nas teclas citadas anteriormente (**a** e **d**) alteramos o valor da variável 'ang' utilizada na rotação, interferindo diretamente no sentido e na velocidade de rotação da imagem.
 
 - Cisalhar: ao pressionar a tecla **c** é possível aplicar dois tipos de cisalhamento na imagem, isso acontece porque estamos multiplicando uma variavel 'cisalhamento', que inicia como uma matriz identidade, pela matriz N. Por ser uma matriz identidade, nada ocorre, mas quando o usuário pressiona a devida tecla, essa variável 'cisalhamento' é alterada para uma matriz transformação de cisalhamento `[[1,0,0],[-1,1,0],[0,0,1]]` aplicando um cisalhamento para a esquerda, se pressionada novamente é alterada para `[[1,0,0],[1,1,0],[0,0,1]]` aplicando um cisalhamento para a direita, e por fim, se pressionada novamente ela torna a ser uma matriz identidade e a imagem não apresenta mais cisalhamento.
+
+
 
 
 Feito por: <a href= "https://github.com/fernandovs4"> Fernando Santos e <a href = "https://github.com/eriksoaress"> Erik Soares<a>
